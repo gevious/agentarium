@@ -10,6 +10,8 @@ RUN pacman -Syu --noconfirm \
         curl \
         wget \
         jq \
+        nodejs \
+        npm \
         ripgrep \
         fd \
         fzf \
@@ -34,6 +36,9 @@ RUN pacman -Syu --noconfirm \
         ca-certificates \
         shadow \
     && pacman -Scc --noconfirm
+
+RUN npm i -g @openai/codex@latest \
+    && npm cache clean --force
 
 RUN groupadd --gid 1000 gevious \
     && useradd --uid 1000 --gid 1000 --create-home --shell /usr/bin/zsh gevious

@@ -5,7 +5,7 @@ usage() {
   cat <<'USAGE'
 Usage: agentarium/scripts/bootstrap.sh [options]
 
-Starts or recreates the agentarium workspace.
+Starts or recreates the agentarium workspace for SSH-first use.
 
 Options:
   --workspace <name>   Workspace name (default: agentarium)
@@ -64,7 +64,10 @@ elif [[ "$RECREATE_WORKSPACE" == true ]]; then
   UP_FLAGS="--recreate"
 fi
 
-devpod up "$REPO_ROOT" --id "$WORKSPACE_NAME" $UP_FLAGS
+devpod up "$REPO_ROOT" --id "$WORKSPACE_NAME" --ide none --open-ide=false --configure-ssh=true $UP_FLAGS
 
 echo "Workspace ready. Connect with:"
-echo "  devpod ssh $WORKSPACE_NAME"
+echo "  ./scripts/connect.sh --workspace $WORKSPACE_NAME"
+echo
+echo "For Codex ChatGPT login with a browser callback, in a separate terminal:"
+echo "  ./scripts/codex-tunnel.sh --workspace $WORKSPACE_NAME"

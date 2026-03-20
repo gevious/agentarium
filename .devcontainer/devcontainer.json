@@ -10,12 +10,5 @@
   "containerEnv": {
     "SHELL": "/usr/bin/zsh",
     "AGENTARIUM_NAME": "agentarium"
-  },
-  "customizations": {
-    "vscode": {
-      "settings": {
-        "terminal.integrated.defaultProfile.linux": "zsh"
-      }
-    }
   }
 }
