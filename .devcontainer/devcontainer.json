@@ -4,9 +4,11 @@
     "dockerfile": "Dockerfile",
     "context": ".."
   },
-  "remoteUser": "gevious",
-  "containerUser": "gevious",
+  "remoteUser": "rowan",
+  "containerUser": "rowan",
   "updateRemoteUserUID": true,
+  "postCreateCommand": "bash .devcontainer/setup-codex.sh",
+  "postStartCommand": "bash .devcontainer/setup-codex.sh",
   "containerEnv": {
     "SHELL": "/usr/bin/zsh",
     "AGENTARIUM_NAME": "agentarium"

@@ -27,6 +27,7 @@ RUN pacman -Syu --noconfirm \
         grep \
         diffutils \
         patch \
+        bubblewrap \
         make \
         unzip \
         zip \
@@ -40,8 +41,8 @@ RUN pacman -Syu --noconfirm \
 RUN npm i -g @openai/codex@latest \
     && npm cache clean --force
 
-RUN groupadd --gid 1000 gevious \
-    && useradd --uid 1000 --gid 1000 --create-home --shell /usr/bin/zsh gevious
+RUN groupadd --gid 1000 rowan \
+    && useradd --uid 1000 --gid 1000 --create-home --shell /usr/bin/zsh rowan
 
 RUN cat <<'EOF' >/etc/zsh/zlogin
 autoload -Uz add-zsh-hook
@@ -58,3 +59,5 @@ _agentarium_prompt() {
 
 add-zsh-hook precmd _agentarium_prompt
 EOF
+
+USER rowan
