@@ -1,0 +1,21 @@
+{
+  "name": "agentarium",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "remoteUser": "gevious",
+  "containerUser": "gevious",
+  "updateRemoteUserUID": true,
+  "containerEnv": {
+    "SHELL": "/usr/bin/zsh",
+    "AGENTARIUM_NAME": "agentarium"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh"
+      }
+    }
+  }
+}
