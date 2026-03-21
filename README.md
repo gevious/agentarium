@@ -17,6 +17,8 @@ It is intentionally broader than a single-repo sandbox:
 
 - `bash`, `zsh`
 - `git`, `gh`, `openssh`
+- `chezmoi`
+- `pass-cli` (Proton Pass CLI)
 - `curl`, `wget`, `jq`
 - `nodejs`, `npm`
 - `codex` CLI (`@openai/codex`)

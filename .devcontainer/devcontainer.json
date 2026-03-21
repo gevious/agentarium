@@ -7,13 +7,17 @@
   "remoteUser": "rowan",
   "containerUser": "rowan",
   "updateRemoteUserUID": true,
-  "postCreateCommand": "bash .devcontainer/setup-codex.sh",
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
   "postStartCommand": "bash .devcontainer/setup-codex.sh",
   "containerEnv": {
     "SHELL": "/usr/bin/zsh",
-    "AGENTARIUM_NAME": "agentarium"
+    "AGENTARIUM_NAME": "agentarium",
+    "CODEX_APPROVAL_POLICY": "on-request",
+    "CODEX_SANDBOX_MODE": "danger-full-access"
   },
   "runArgs": [
+    "--dns=1.1.1.1",
+    "--dns=8.8.8.8",
     "--security-opt=seccomp=unconfined",
     "--security-opt=apparmor=unconfined"
   ]

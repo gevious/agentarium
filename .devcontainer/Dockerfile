@@ -6,6 +6,7 @@ RUN pacman -Syu --noconfirm \
         zsh \
         git \
         github-cli \
+        chezmoi \
         openssh \
         curl \
         wget \
@@ -37,6 +38,12 @@ RUN pacman -Syu --noconfirm \
         ca-certificates \
         shadow \
     && pacman -Scc --noconfirm
+
+# Install Proton Pass CLI (pass-cli)
+RUN curl -fsSL https://proton.me/download/pass-cli/install.sh | PROTON_PASS_CLI_INSTALL_DIR=/usr/local/bin bash
+
+# Proton Pass local keyring backends are unreliable in headless containers.
+ENV PROTON_PASS_KEY_PROVIDER=fs
 
 RUN npm i -g @openai/codex@latest \
     && npm cache clean --force
