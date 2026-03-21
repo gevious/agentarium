@@ -12,5 +12,9 @@
   "containerEnv": {
     "SHELL": "/usr/bin/zsh",
     "AGENTARIUM_NAME": "agentarium"
-  }
+  },
+  "runArgs": [
+    "--security-opt=seccomp=unconfined",
+    "--security-opt=apparmor=unconfined"
+  ]
 }

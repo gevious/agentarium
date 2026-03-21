@@ -3,29 +3,23 @@ set -euo pipefail
 
 usage() {
   cat <<'USAGE'
-Usage: agentarium/scripts/bootstrap.sh [options]
+Usage: agentarium/scripts/init.sh [options]
 
 Starts or recreates the agentarium workspace for SSH-first use.
 
 Options:
-  --workspace <name>   Workspace name (default: agentarium)
   --no-recreate        Do not pass --recreate to devpod up.
   --reset-workspace    Pass --reset to devpod up.
   -h, --help           Show this help text.
 USAGE
 }
 
-WORKSPACE_NAME="agentarium"
+WORKSPACE_NAME="$(basename "$PWD")"
 RECREATE_WORKSPACE=true
 RESET_WORKSPACE=false
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --workspace)
-      [[ $# -ge 2 ]] || { echo "Missing value for --workspace" >&2; exit 1; }
-      WORKSPACE_NAME="$2"
-      shift 2
-      ;;
     --no-recreate)
       RECREATE_WORKSPACE=false
       shift
@@ -67,7 +61,7 @@ fi
 devpod up "$REPO_ROOT" --id "$WORKSPACE_NAME" --ide none --open-ide=false --configure-ssh=true $UP_FLAGS
 
 echo "Workspace ready. Connect with:"
-echo "  ./scripts/connect.sh --workspace $WORKSPACE_NAME"
+echo "  devpod ssh ."
 echo
 echo "For Codex ChatGPT login with a browser callback, in a separate terminal:"
-echo "  ./scripts/codex-tunnel.sh --workspace $WORKSPACE_NAME"
+echo "  ./scripts/codex-tunnel.sh"
